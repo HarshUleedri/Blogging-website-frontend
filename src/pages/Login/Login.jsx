@@ -1,6 +1,7 @@
-import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../app/feature/auth/authSlice";
 
 const Login = () => {
   // first step state for storing data
@@ -8,12 +9,14 @@ const Login = () => {
   // create a state for error to store the error and display if any error
   // create form submit function in which it will have sending user id and password to the backend and checking the password and confirm password is matching
 
+  const dispatch = useDispatch();
+  const { isAuthenticated, isError } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
-  const [error, setError] = useState("");
+  const [error, setError] = useState(null);
   const [isvisible, setIsvisible] = useState({
     showPassword: false,
     showConfirmPassword: false,
@@ -42,20 +45,36 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      await axios.post("http://localhost:3000/api/login", formData);
-      setError({});
+    dispatch(login(formData));
+    setError(isError);
+
+    if (isAuthenticated) {
       navigate("/");
-    } catch (err) {
-      console.log(err.response.data);
-      setError(err.response.data);
     }
+
+    // try {
+    //   const response = await authAxios.post(
+    //     "http://localhost:3000/api/login",
+    //     formData
+    //   );
+    //   if (!response) {
+    //     return setError("Invalid login credentials");
+    //   }
+    //   const { token } = response.data;
+    //   console.log(token);
+    //   localStorage.setItem("token", token);
+    //   setError({});
+    //   navigate("/");
+    // } catch (err) {
+    //   console.log(err.response.data);
+    //   setError(err.response.data.message);
+    // }
   };
+
+  // const logout = () => localStorage.removeItem("token");
 
   return (
     <>
-      <div>login</div>
-
       <form onSubmit={handleSubmit}>
         <div className="flex flex-col gap-4 px-8 py-8 bg-gray-300 rounded-lg w-96">
           <label htmlFor="username">username </label>
@@ -102,7 +121,7 @@ const Login = () => {
               </svg>
             )}
           </button>
-          {error && <p className="text-red-600 ">{error.message}</p>}
+          {error && <p className="text-red-600 ">{error}</p>}
           <button className="px-12 py-2 text-white bg-gray-800 rounded-md">
             Login
           </button>

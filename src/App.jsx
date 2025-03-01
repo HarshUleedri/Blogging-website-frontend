@@ -1,13 +1,10 @@
-import { RouterProvider } from "react-router-dom";
-import routes from "./routers/router";
-import Navbar from "./components/desktop/Navbar";
+import Layout from "./layout/Layout";
+import Routes from "./routers/router";
 
 const App = () => {
   return (
     <>
-      <Navbar />
-      <RouterProvider router={routes} />
-      <div>footer</div>
+      <Routes />
     </>
   );
 };

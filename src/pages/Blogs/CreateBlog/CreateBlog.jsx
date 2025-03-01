@@ -9,12 +9,16 @@ const CreateBlog = () => {
   const handleSubmite = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3000/api/blogs", {
+      await axios.post("http://localhost:3000/api/blogs/", {
         title,
         content,
         author,
       });
-      alert("sucessfully created blog");
+
+      settitle("");
+      setContent("");
+      setAuthor("");
+      alert("sucessfully created blog");  
     } catch (err) {
       console.error(err);
     }
