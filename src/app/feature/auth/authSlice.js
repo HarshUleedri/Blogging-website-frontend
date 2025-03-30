@@ -11,6 +11,7 @@ export const login = createAsyncThunk(
         formData
       );
       const data = response.data.token;
+      console.log(data);
       return data;
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || "Failed to login");

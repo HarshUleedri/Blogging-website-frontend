@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 
 const Layout = ({ children }) => {
   const { pathname } = useLocation();
-  const hiddenRoutes = ["/login", "/register"];
+  const hiddenRoutes = ["/login", "/register", "/new"];
   return (
     <>
       {!hiddenRoutes.includes(pathname) && <Navbar />}

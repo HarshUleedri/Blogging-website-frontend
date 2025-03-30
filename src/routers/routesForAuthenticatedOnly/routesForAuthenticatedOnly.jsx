@@ -8,7 +8,7 @@ export const routesForAuthenticatedOnly = [
     element: <ProtectedRoute />,
     children: [
       {
-        path: "/create",
+        path: "/new",
         element: <CreateBlog />,
       },
       {

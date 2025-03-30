@@ -3,9 +3,9 @@ import { Navigate, Outlet } from "react-router-dom";
 import Layout from "../../layout/Layout";
 
 export const ProtectedRoute = () => {
-  const { isAuthenticate } = useSelector((state) => state.auth);
+  const { isAuthenticated } = useSelector((state) => state.auth);
 
-  if (!isAuthenticate) {
+  if (!isAuthenticated) {
     return <Navigate to="/login" />;
   }
   return (

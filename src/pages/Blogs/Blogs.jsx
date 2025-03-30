@@ -1,10 +1,12 @@
 import authAxios from "../../api/axiosInstance";
-import { useEffect } from "react";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import useBookmark from "../../hook/useBookmark";
+import Card from "../Blogs/Components/Card";
 const Blogs = () => {
+  const [isBookmarked, toggleBookmark] = useBookmark();
   const [allBlogs, setAllBlogs] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -22,17 +24,15 @@ const Blogs = () => {
 
   return (
     <>
-      <div>
+      <div className="space-y-2">
         {allBlogs.map((blog) => (
-          <Link key={blog._id} to={`/blog/${blog.slug}`}>
-            <div className="px-12 py-12 mb-4 bg-gray-100 ">
-              <h3 className="mb-4 text-2xl font-semibold text-gray-900">
-                {blog.title}
-              </h3>
-              <p className="mb-4 ">{blog.content}</p>
-              <h4 className="font-semibold ">{blog.author}</h4>
-            </div>
-          </Link>
+          <div
+            className="w-full"
+            key={blog._id}
+            onClick={() => navigate(`/blog/${blog.slug}`)}
+          >
+            <Card blog={blog} />
+          </div>
         ))}
       </div>
     </>

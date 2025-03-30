@@ -10,9 +10,6 @@ const Navbar = () => {
   const handleLogout = () => {
     dispatch(logout());
   };
-  const handleLogin = () => {
-    navigate("/login");
-  };
 
   return (
     <>
@@ -34,13 +31,29 @@ const Navbar = () => {
         <div className="flex gap-4">
           <ul className="flex gap-4 text-lg font-semibold text-black"></ul>
           {isAuthenticated ? (
-            <button className="btn-secondary" onClick={handleLogout}>
-              Logout
-            </button>
+            <div className="flex gap-2">
+              <button className="btn-secondary" onClick={handleLogout}>
+                Logout
+              </button>
+              <button
+                className="btn-secondary"
+                onClick={() => navigate("/new")}
+              >
+                Create Post
+              </button>
+            </div>
           ) : (
-            <button className="btn-secondary" onClick={handleLogin}>
-              Login
-            </button>
+            <div className="flex gap-2">
+              <button className="btn-accent" onClick={() => navigate("/login")}>
+                Login
+              </button>
+              <button
+                className="btn-secondary"
+                onClick={() => navigate("/register")}
+              >
+                Create account
+              </button>
+            </div>
           )}
         </div>
       </div>
