@@ -51,6 +51,8 @@ const CreateBlog = () => {
     // formData.append("publish", isPublish);
     // formData.append("coverImage", image);
 
+ 
+
     const formData = {
       title,
       content: text,
@@ -69,7 +71,7 @@ const CreateBlog = () => {
     if (resData?.blog.slug) {
       navigate(`/blog/${resData.blog.slug}`, { replace: true });
     }
-    setCoverImage();
+    setCoverImage("");
     settitle("");
     setTags([]);
     setText("");

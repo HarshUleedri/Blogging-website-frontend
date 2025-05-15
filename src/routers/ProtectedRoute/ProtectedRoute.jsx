@@ -8,9 +8,11 @@ export const ProtectedRoute = () => {
   if (!isAuthenticated) {
     return <Navigate to="/login" />;
   }
+
   return (
     <Layout>
       <Outlet />
     </Layout>
   );
 };
+  

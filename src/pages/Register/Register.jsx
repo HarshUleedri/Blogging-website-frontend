@@ -21,7 +21,7 @@ const Register = () => {
       setError({ password: "password does not match" });
     } else {
       try {
-        await axios.post("http://localhost:3000/api/register", registerData);
+        await axios.post(import.meta.env.VITE_BASE_URL, registerData);
         setError({});
         navigate("/login");
       } catch (err) {
@@ -31,7 +31,7 @@ const Register = () => {
   };
   return (
     <>
-      <div className="max-w-5xl mx-auto text-center ">
+      <div className="flex flex-col items-center justify-center max-w-5xl gap-4 py-8 mx-auto text-center">
         <div className="text-3xl font-semibold text-black ">Register here</div>
         <form onSubmit={handleSubmit}>
           <div className="flex flex-col gap-4 px-8 py-8 bg-gray-300 rounded-md text-start w-96">

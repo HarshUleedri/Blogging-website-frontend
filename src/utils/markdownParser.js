@@ -14,7 +14,9 @@ export const md = new MarkdownIt({
         return `<pre><code class="hljs language-${lang}">${
           hljs.highlight(str, { language: lang }).value
         }</code></pre>`;
-      } catch (__) {}
+      } catch (err) {
+        console.log(err);
+      }
     }
     return `<pre><code class="hljs">${md.utils.escapeHtml(str)}</code></pre>`;
   },

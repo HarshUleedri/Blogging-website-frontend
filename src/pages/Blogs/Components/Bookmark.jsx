@@ -1,13 +1,21 @@
-import React from "react";
 import useBookmark from "../../../hook/useBookmark";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Bookmark = ({ blogId, blogSlug }) => {
+  //hook
   const [isBookmark, toggleBookmark] = useBookmark();
+  const { isAuthenticated } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
 
+  //value
   const isthere = isBookmark.some((blog) => blog._id === blogId);
 
   const handleBookmarkToggle = (event) => {
     event.stopPropagation();
+    if (!isAuthenticated) {
+      navigate(`/blog/${blogSlug}`, { state: { showLogin: true } });
+    }
     toggleBookmark(blogSlug);
   };
 

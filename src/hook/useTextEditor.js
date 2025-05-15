@@ -11,7 +11,7 @@ const useTextEditor = () => {
   const { isPending, mutate } = useMutation({
     mutationFn: (data) => uploadImageInApi(data),
     onSuccess: (res) => {
-      console.log(res);
+   
       const textarea = textareaRef.current;
 
       if (!textarea) return;

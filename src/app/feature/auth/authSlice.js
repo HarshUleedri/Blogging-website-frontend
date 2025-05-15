@@ -7,11 +7,10 @@ export const login = createAsyncThunk(
   async (formData, { rejectWithValue }) => {
     try {
       const response = await authAxios.post(
-        "http://localhost:3000/api/login",
+        `${import.meta.env.VITE_BASE_URL}/api/login`,
         formData
       );
-      const data = response.data.token;
-      console.log(data);
+      const data = response.data;
       return data;
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || "Failed to login");
@@ -22,12 +21,15 @@ export const login = createAsyncThunk(
 // function for logout it is removing token from local storage
 export const logout = createAsyncThunk("auth/logout", () => {
   localStorage.removeItem("token");
+  localStorage.removeItem("user");
   return null;
 });
 
 // initial state for auth slice
 const initialState = {
-  user: null,
+  user: localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user"))
+    : null,
   token: localStorage.getItem("token") || null,
   isAuthenticated: localStorage.getItem("token") ? true : false,
   isLoading: false,
@@ -48,8 +50,10 @@ const authSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.token = action.payload;
-        localStorage.setItem("token", action.payload);
+        state.token = action.payload.token;
+        localStorage.setItem("token", action.payload.token);
+        state.user = action.payload.user;
+        localStorage.setItem("user", JSON.stringify(action.payload.user));
         state.isError = null;
         state.isAuthenticated = true;
       })
@@ -60,6 +64,7 @@ const authSlice = createSlice({
       })
       .addCase(logout.fulfilled, (state) => {
         state.token = null;
+        state.user = null;
         state.isAuthenticated = false;
       });
   },

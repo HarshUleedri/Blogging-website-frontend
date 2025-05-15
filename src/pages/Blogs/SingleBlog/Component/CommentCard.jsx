@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { renderMarkdown } from "../../../../utils/markdownParser";
 import CommentTextEditor from "./CommentTextEditor";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addCommentReaction } from "../../../../api/CommentApi/CommentApi";
-import { data } from "autoprefixer";
 
 // const renderNestedComments = (comments, blogSlug) => {
 //   return comments.map((comment) => (
@@ -20,13 +19,14 @@ const CommentCard = ({
   comments: {
     _doc: {
       text,
-      userId: { username },
+      userId: { username, profileImage },
       _id,
       createdAt,
       reactions,
     },
     replies,
   },
+  relpyImage = false,
 }) => {
   //state
   const [isExpand, setIsExpand] = useState(true);
@@ -39,7 +39,7 @@ const CommentCard = ({
     mutationFn: (data) => addCommentReaction(_id, data),
     onSuccess: (res) => {
       queryClient.invalidateQueries(["comments"]);
-      console.log(res.reactions.like);
+
       setReaction(res.reactions);
     },
   });
@@ -53,9 +53,18 @@ const CommentCard = ({
       <>
         {isExpand ? (
           <>
-            <div className="flex items-start mb-8">
-              <div className="flex flex-col items-center ">
-                <div>profile Icon</div>
+            <div className="flex items-start gap-4 mb-8">
+              <div className="flex flex-col items-center gap-2">
+                <img
+                  src={
+                    profileImage ||
+                    "https://dummyimage.com/100x100/000/dedede&text=profileImage"
+                  }
+                  alt="profile-image"
+                  className={`rounded-full ${
+                    relpyImage ? "size-6" : "size-8"
+                  } shrink-0`}
+                />
                 <div
                   onClick={() => setIsExpand(false)}
                   className="p-1 rounded hover:bg-secondary"
@@ -209,7 +218,12 @@ const CommentCard = ({
             {replies?.length > 0 && (
               <div className="pl-4 ml-8 border-l">
                 {replies.map((reply, index) => (
-                  <CommentCard key={index} slug={slug} comments={reply} />
+                  <CommentCard
+                    key={index}
+                    slug={slug}
+                    comments={reply}
+                    relpyImage={true}
+                  />
                 ))}
               </div>
             )}

@@ -5,6 +5,7 @@ import App from "./App.jsx";
 import Store from "./app/store";
 import { Provider } from "react-redux";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { SearchProvider } from "./context/searchContext/searchContext.jsx";
 
 const queryClient = new QueryClient();
 
@@ -12,7 +13,9 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <Provider store={Store}>
-        <App />
+        <SearchProvider>
+          <App />
+        </SearchProvider>
       </Provider>
     </QueryClientProvider>
   </StrictMode>

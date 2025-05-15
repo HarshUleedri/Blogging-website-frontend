@@ -1,5 +1,3 @@
-import React from "react";
-
 const TextEditor = ({
   data: { isHeadingOpen, setIsHeadingOpen, applyFormat, isPending, addImage },
 }) => {

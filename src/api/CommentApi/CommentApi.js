@@ -11,10 +11,14 @@ export const addComment = async (blogSlug, data) => {
 };
 
 export const addCommentReaction = async (commentId, reactionType) => {
-  console.log(commentId);
-  console.log(reactionType);
+ 
   const res = await axiosInstance.post(`/comments/reaction//${commentId}`, {
     reactionType,
   });
+  return await res.data;
+};
+
+export const getCommentsOfAllBlogs = async () => {
+  const res = await axiosInstance.get("/user/comments/user-blogs");
   return await res.data;
 };

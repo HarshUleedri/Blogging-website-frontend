@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import useTextEditor from "../../../../hook/useTextEditor";
 import TextEditor from "../../../../components/Common/TextEditor/TextEditor";
 import { renderMarkdown } from "../../../../utils/markdownParser";
-import { useMutation } from "@tanstack/react-query";
 import useBlogComment from "../../../../hook/useBlogComments";
+import { useSelector } from "react-redux";
 
 const CommentTextEditor = ({
   blogSlug,
@@ -11,6 +11,7 @@ const CommentTextEditor = ({
   dismiss = false,
   setDismiss,
   isFocus = false,
+  openModal,
 }) => {
   //state
   const [isPreview, setIsPreview] = useState(false);
@@ -21,6 +22,9 @@ const CommentTextEditor = ({
   //hook
   const { textareaRef, text, setText, handleKeyDown, data } = useTextEditor();
   const { mutate, isPending, isError } = useBlogComment(blogSlug);
+  const { isAuthenticated } = useSelector((state) => state.auth);
+
+  //helper function
 
   const handleSubmit = () => {
     const data = {
@@ -31,6 +35,13 @@ const CommentTextEditor = ({
     mutate(data);
     setText("");
     setIsPreview(false);
+  };
+
+  const handleOnFocus = () => {
+    if (isAuthenticated) {
+      return setIsVisibleEditor(true);
+    }
+    openModal();
   };
 
   return (
@@ -52,7 +63,7 @@ const CommentTextEditor = ({
             ref={textareaRef}
             className="w-full p-4 text-lg rounded-md outline-none resize-none h-36 text-light focus:border-2 focus:border-accent"
             value={text}
-            onFocus={() => setIsVisibleEditor(true)}
+            onFocus={handleOnFocus}
             onChange={(e) => setText(e.target.value)}
             onKeyDown={handleKeyDown}
             name=""

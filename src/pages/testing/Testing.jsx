@@ -1,9 +1,4 @@
 //
-import axiosInstance from "../../api/axiosInstance";
-import TextEditor from "../../components/Common/TextEditor/TextEditor";
-import useTextEditor from "../../hook/useTextEditor";
-
-const reactionType = "clap";
 
 const Testing = () => {
   // const testapi2 = async () => {
@@ -30,25 +25,7 @@ const Testing = () => {
   //   console.log(data.reactions);
   // };
 
-  const { text, setText, handleKeyDown, textareaRef, data } = useTextEditor();
-
-  const testapi2 = async () => {
-    const res = await axiosInstance.post(
-      "http://localhost:3000/api/blog/sadfasdf/bookmark"
-    );
-    console.log(await res.data.bookmarked);
-  };
-
-  return (
-    <div className="flex gap-8 p-8">
-      {/* <button onClick={testapi1} className="btn-secondary">
-        get
-      </button> */}
-      <button onClick={testapi2} className="btn-secondary">
-        post
-      </button>
-    </div>
-  );
+  return <div className="m-10"></div>;
 };
 
 export default Testing;

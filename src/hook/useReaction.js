@@ -6,7 +6,7 @@ const useReaction = (slug) => {
   const [reaction, setReaction] = useState({});
   const queryClient = useQueryClient();
 
-  const { data, refetch } = useQuery({
+  const { data } = useQuery({
     queryKey: ["reaction", slug],
     queryFn: () => getReaction(slug),
     enabled: !!slug,
@@ -20,8 +20,7 @@ const useReaction = (slug) => {
     mutationFn: (reactionType) => addReaction(slug, reactionType),
     onSuccess: () => {
       // Only update UI after API response
-      refetch();
-      // queryClient.invalidateQueries(["reaction", slug]);
+      queryClient.invalidateQueries(["reaction", slug]);
     },
   });
 

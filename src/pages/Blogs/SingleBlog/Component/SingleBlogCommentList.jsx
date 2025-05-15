@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import useBlogComment from "../../../../hook/useBlogComments";
 
 import CommentCard from "./CommentCard";

@@ -21,5 +21,5 @@ export const useModal = () => {
     return () => document.removeEventListener("mousedowm", handleOutsideClick);
   });
 
-  return { openModal, closeModal, isOpen, modalRef };
+  return { isOpen, openModal, modalRef, closeModal };
 };

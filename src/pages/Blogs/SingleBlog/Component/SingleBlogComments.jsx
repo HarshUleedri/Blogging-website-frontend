@@ -1,23 +1,27 @@
-import { useQueries, useQuery } from "@tanstack/react-query";
-import React from "react";
+import { useQuery } from "@tanstack/react-query";
 import { getComments } from "../../../../api/CommentApi/CommentApi";
+import { useSelector } from "react-redux";
 
-const SingleBlogComments = ({ slug }) => {
+const SingleBlogComments = ({ slug, openModal }) => {
+  //hook
   const { data = [] } = useQuery({
     queryKey: ["comments", slug],
     queryFn: () => getComments(slug),
     enabled: !!slug,
   });
+
+  const { isAuthenticated } = useSelector((state) => state.auth);
+
+  //value
   const topLevelComments = data?.topLevelComments;
 
   // navigating to the comment section
 
   const navigateToSection = () => {
-    if (window.location.hash === "#comments") {
-      history.replaceState(null, "", window.location.pathname);
-    } else {
-      history.replaceState(null, "", `${window.location.pathname}#comments`);
+    if (!isAuthenticated) {
+      return openModal();
     }
+    window.location.hash = "comments";
   };
 
   return (
