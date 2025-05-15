@@ -3,8 +3,9 @@ import Blogs from "../Blogs/Blogs";
 
 import LoginAd from "./component/LoginAd";
 import Advert from "./component/Advert";
-import LatestTopic from "./component/latestTopic";
+
 import SideBar from "./component/SideBar";
+import LatestTopic from "./component/LatestTopic";
 const Home = () => {
   const { isAuthenticated } = useSelector((state) => state.auth);
 
