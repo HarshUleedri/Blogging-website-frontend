@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { SearchContext } from "./SearchContext";
 
-export const SearchProvider = ({ children }) => {
+const SearchProvider = ({ children }) => {
   const [query, setQuery] = useState("");
 
   return (
@@ -10,3 +10,5 @@ export const SearchProvider = ({ children }) => {
     </SearchContext.Provider>
   );
 };
+
+export default SearchProvider;
