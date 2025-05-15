@@ -2,8 +2,9 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useUserFollow } from "../../../hook/useUserFollow";
 import Modal from "../../../components/Common/Modal/Modal";
-import UnauthorizedCard from "../../../components/Fallbacks/unauthorizedCard/unauthorizedCard";
+
 import { useModal } from "../../../hook/useModal";
+import UnauthorizedCard from "../../../components/Fallbacks/UnauthorizedCard/UnauthorizedCard";
 
 const ProfileCard = ({ user, blogSlug }) => {
   //hook

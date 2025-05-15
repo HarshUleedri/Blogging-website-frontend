@@ -13,9 +13,10 @@ import ProfileCard from "../Components/ProfileCard";
 import { useSelector } from "react-redux";
 import Modal from "../../../components/Common/Modal/Modal";
 import { useModal } from "../../../hook/useModal";
-import UnauthorizedCard from "../../../components/Fallbacks/unauthorizedCard/unauthorizedCard";
+
 import { useEffect } from "react";
 import LatestTopic from "../../Home/component/latestTopic";
+import UnauthorizedCard from "../../../components/Fallbacks/UnauthorizedCard/UnauthorizedCard";
 
 const SingleBlog = () => {
   //state
