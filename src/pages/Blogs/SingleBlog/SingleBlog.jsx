@@ -16,7 +16,7 @@ import { useModal } from "../../../hook/useModal";
 
 import { useEffect } from "react";
 
-import UnauthorizedCard from "../../../components/Fallbacks/UnauthorizedCard/UnauthorizedCard";
+import UnauthorizedCard from "../../../components/Fallbacks/UnauthorizedCard/UnauthorizedCard.jsx";
 import LatestTopic from "../../Home/component/LatestTopic";
 
 const SingleBlog = () => {
