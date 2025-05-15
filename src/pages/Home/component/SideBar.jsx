@@ -1,4 +1,4 @@
-import { useSearch } from "../../../context/searchContext/searchHook";
+import { useSearch } from "../../../context/SearchContext/useSearch";
 
 const SideBar = () => {
   //value

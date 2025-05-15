@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import Card from "../Blogs/Components/Card";
 import useGetBlogs from "../../hook/useGetBlogs";
-import { useSearch } from "../../context/searchContext/searchHook";
+
 import AllBLogShimmer from "../../components/Fallbacks/Shimmer/AllBLogShimmer";
+import { useSearch } from "../../context/SearchContext/useSearch";
 const Blogs = () => {
   // const [isBookmarked, toggleBookmark] = useBookmark();
 

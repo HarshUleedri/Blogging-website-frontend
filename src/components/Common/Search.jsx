@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useSearch } from "../../context/searchContext/searchHook";
+import { useSearch } from "../../context/SearchContext/useSearch";
 
 const Search = () => {
   // state
