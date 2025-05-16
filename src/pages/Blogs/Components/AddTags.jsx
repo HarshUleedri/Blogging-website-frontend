@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
-import TagBlock from "./tagBlock";
+
 import ListOfTags from "./ListOfTags";
+import TagBlock from "./TagBlock";
 
 const AddTags = ({ tags, setTags }) => {
   const [isopen, setIsOpen] = useState(false);
