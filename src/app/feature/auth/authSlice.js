@@ -7,7 +7,7 @@ export const login = createAsyncThunk(
   async (formData, { rejectWithValue }) => {
     try {
       const response = await authAxios.post(
-        `${import.meta.env.VITE_BASE_URL}/api/login`,
+        `${import.meta.env.VITE_BASE_URL}/login`,
         formData
       );
       const data = response.data;

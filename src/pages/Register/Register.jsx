@@ -21,7 +21,10 @@ const Register = () => {
       setError({ password: "password does not match" });
     } else {
       try {
-        await axios.post(import.meta.env.VITE_BASE_URL, registerData);
+        await axios.post(
+          `${import.meta.env.VITE_BASE_URL}/register`,
+          registerData
+        );
         setError({});
         navigate("/login");
       } catch (err) {
