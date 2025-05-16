@@ -2,8 +2,9 @@ import { useRef, useState } from "react";
 import Reaction from "./Reaction";
 import Bookmark from "./Bookmark";
 import Comments from "./Comments";
-import Tags from "./tags";
+
 import ProfileCard from "./ProfileCard";
+import Tags from "./Tags";
 
 const Card = ({ blog, usersBlog = false }) => {
   //Props
