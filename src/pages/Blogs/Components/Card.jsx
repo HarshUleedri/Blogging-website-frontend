@@ -28,8 +28,11 @@ const Card = ({ blog, usersBlog = false }) => {
         <div className="flex gap-4">
           <div className="shrink-0">
             <img
-              className="rounded-full size-8"
-              src={author?.profileImage}
+              className="rounded-full bg- size-8"
+              src={
+                author?.profileImage ||
+                "https://www.dummyimage.com/100x100/000/fff&text=image"
+              }
               alt="profile-image"
             />
           </div>
