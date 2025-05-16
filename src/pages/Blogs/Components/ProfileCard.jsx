@@ -4,7 +4,7 @@ import { useUserFollow } from "../../../hook/useUserFollow";
 import Modal from "../../../components/Common/Modal/Modal";
 
 import { useModal } from "../../../hook/useModal";
-import UnauthorizedCard from "../../../components/Fallbacks/UnauthorizedCard/UnauthorizedCard";
+import UnauthorizedCard from "../../../components/Common/UnauthorizedCard/UnauthorizedCard";
 
 const ProfileCard = ({ user, blogSlug }) => {
   //hook

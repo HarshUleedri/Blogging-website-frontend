@@ -9,6 +9,7 @@ const UnauthorizedCard = ({ closeModal }) => {
     event.stopPropagation();
     closeModal();
   };
+
   return (
     <div>
       <div className="w-full bg-white border rounded-md">
